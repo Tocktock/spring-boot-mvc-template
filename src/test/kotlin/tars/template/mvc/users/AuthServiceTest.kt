@@ -11,16 +11,24 @@ internal class AuthServiceTest {
     @Autowired
     lateinit var authService: AuthService
 
+    @Autowired
+    lateinit var jwtFactory: JwtFactory
+
+    private val jyEmail = "test@jy-test.com"
+    private val jyPW = "mypassw0rd"
+
     @Test
     @Transactional
     fun `signUp test`() {
-        val users = authService.signUp("test@TTest.com", "mypassw0rd")
-        assertNotEquals(users.password, "mypass0rd")
+        val users = authService.signUp(jyEmail, jyPW)
+        assertNotEquals(jyPW, users.password)
     }
 
     @Test
     @Transactional
     fun `signIn test`() {
-        
+        authService.signUp(jyEmail, jyPW)
+        val token = authService.signIn(jyEmail, jyPW)
+        assertNotEquals(jyPW, jwtFactory.verify(token)["email"])
     }
 }
