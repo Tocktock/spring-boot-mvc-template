@@ -47,4 +47,8 @@ class Users(
     fun validatePassword(password: String): Boolean {
         return BCrypt.checkpw(password, this.password)
     }
+
+    override fun toString(): String {
+        return "Users(id=$id, email='$email', state=$state, createdAt=$createdAt, updatedAt=$updatedAt, password='$password')"
+    }
 }

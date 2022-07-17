@@ -7,7 +7,7 @@ plugins {
 	id("org.jetbrains.kotlin.plugin.jpa") version ktVersion
 	kotlin("jvm") version ktVersion
 	kotlin("plugin.spring") version ktVersion
-
+	kotlin("kapt") version ktVersion //Querydsl
 }
 
 group = "tars.template"
@@ -38,12 +38,13 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
+	// querydsl
+	val querydslVersion = "5.0.0"
+	implementation("com.querydsl:querydsl-jpa:$querydslVersion")
+	kapt("com.querydsl:querydsl-apt:$querydslVersion:jpa")
+	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:2.7.1")
+	annotationProcessor(group = "com.querydsl", name = "querydsl-apt", classifier = "jpa")
 
-//	testImplementation("io.kotest:kotest-runner-junit5-jvm:5.3.1")
-//	testImplementation("io.kotest:kotest-assertions-core-jvm:5.3.1")
-//	testImplementation("io.kotest:kotest-property-jvm:5.3.1")
-//	testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.1")
-//	testImplementation("io.mockk:mockk:1.12.4")
 }
 
 tasks.withType<KotlinCompile> {
@@ -56,3 +57,10 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+//kotlin.sourceSets.main {
+//	setBuildDir("$buildDir")
+//}
+//sourceSets["main"].withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
+//	kotlin.srcDir("$buildDir/generated/source/kapt/main")
+//}
