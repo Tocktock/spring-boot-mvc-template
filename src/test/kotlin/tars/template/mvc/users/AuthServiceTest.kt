@@ -21,6 +21,6 @@ internal class AuthServiceTest {
     @Test
     @Transactional
     fun `signIn test`() {
-
+        
     }
 }
