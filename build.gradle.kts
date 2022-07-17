@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "tars.template"
-version = "0.0.1-SNAPSHOT"
+version = "5.3.1"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
@@ -35,6 +35,10 @@ dependencies {
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("io.kotest:kotest-runner-junit5:5.3.1")
+	testImplementation("io.kotest:kotest-assertions-core:5.3.1")
+	testImplementation("io.kotest:kotest-property:5.3.1")
+
 }
 
 tasks.withType<KotlinCompile> {
