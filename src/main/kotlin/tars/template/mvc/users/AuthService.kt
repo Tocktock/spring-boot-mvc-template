@@ -1,6 +1,7 @@
 package tars.template.mvc.users
 
 import org.springframework.stereotype.Service
+import tars.template.mvc.jwt.JwtFactory
 
 @Service
 class AuthService(

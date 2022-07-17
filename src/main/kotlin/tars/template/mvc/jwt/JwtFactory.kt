@@ -1,4 +1,4 @@
-package tars.template.mvc.users
+package tars.template.mvc.jwt
 
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Header
