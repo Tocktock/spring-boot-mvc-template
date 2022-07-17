@@ -15,6 +15,12 @@ class UsersRepository(
     fun findById(id: Long): Users? {
         return usersJpaRepository.findByIdOrNull(id)
     }
+
+    fun findByEmail(email: String): Users? {
+        return usersJpaRepository.findFirstByEmail(email)
+    }
 }
 
-interface UsersJpaRepository : JpaRepository<Users, Long>
+interface UsersJpaRepository : JpaRepository<Users, Long> {
+    fun findFirstByEmail(email: String): Users?
+}

@@ -17,4 +17,10 @@ internal class AuthServiceTest {
         val users = authService.signUp("test@TTest.com", "mypassw0rd")
         assertNotEquals(users.password, "mypass0rd")
     }
+
+    @Test
+    @Transactional
+    fun `signIn test`() {
+
+    }
 }

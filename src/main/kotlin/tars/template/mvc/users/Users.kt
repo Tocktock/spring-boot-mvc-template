@@ -43,4 +43,8 @@ class Users(
     fun hashingPassword() {
         this.password = BCrypt.hashpw(this.password, BCrypt.gensalt())
     }
+
+    fun validatePassword(password: String): Boolean {
+        return BCrypt.checkpw(password, this.password)
+    }
 }
