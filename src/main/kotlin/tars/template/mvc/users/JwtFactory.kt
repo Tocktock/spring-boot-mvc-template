@@ -36,9 +36,6 @@ class JwtFactory {
 
     fun verify(jwt: String): Map<String, Any> {
         val result = Jwts.parserBuilder().setSigningKey(getJwtKey()).build().parseClaimsJws(jwt)
-        result.body.forEach {
-            println(it.value)
-        }
         return result.body.toMap()
     }
 
