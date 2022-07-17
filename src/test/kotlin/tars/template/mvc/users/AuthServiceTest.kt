@@ -1,17 +1,20 @@
 package tars.template.mvc.users
 
-import io.kotest.core.spec.style.StringSpec
-import io.kotest.matchers.shouldNotBe
+import org.junit.jupiter.api.Assertions.assertNotEquals
+import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.transaction.annotation.Transactional
+import javax.transaction.Transactional
 
 @SpringBootTest
-@Transactional
-internal class AuthServiceTest(
-    private val authService: AuthService
-) : StringSpec({
-    "SignUp 테스트" {
+internal class AuthServiceTest {
+    @Autowired
+    lateinit var authService: AuthService
+
+    @Test
+    @Transactional
+    fun `signUp test`() {
         val users = authService.signUp("test@TTest.com", "mypassw0rd")
-        users.password shouldNotBe "mypassw0rd"
+        assertNotEquals(users.password, "mypass0rd")
     }
-})
+}
